@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    /* Offset for fixed header */
+    scroll-padding-top: 80px; 
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    color: #4a5568;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f0f2f5; }
+::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #a0aec0; }
+
+/* Header Navigation */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
+}
+
+.header-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.nav-links-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #4a5568;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4299e1;
+    transition: width 0.3s ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: #2d3748;
+}
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Main Content Area */
+.main-content {
+    width: 100%;
+    padding: 0;
+}
+
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Home Section Specifics */
+#home {
+    text-align: center;
+}
+.home-text h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6rem;
+    line-height: 1.1;
+    font-weight: 900;
+    margin: 0;
+}
+.home-text .name-highlight {
+    color: #4299e1;
+}
+.home-text p {
+    font-size: 1.25rem;
+    margin: 1.5rem auto;
+    max-width: 600px;
+}
+.home-buttons .btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+.btn-primary {
+    background-color: #2d3748;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #1a202c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 55, 72, 0.2);
+}
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    margin-left: 1rem;
+}
+.btn-secondary:hover {
+    background-color: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+/* General Section Styling */
+h2.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+h2.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 5px;
+    background-color: #4299e1;
+    border-radius: 5px;
+}
+
+/* Card styles */
+.card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+}
+
+/* Mobile Menu */
+.menu-toggle { display: none; }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content-section { padding: 5rem 2rem; }
+    .top-header { padding: 1rem 2rem; }
+}
+
+@media (max-width: 768px) {
+    .nav-links-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+    .nav-links-container.open {
+        max-height: 500px; /* Or enough to show all links */
+    }
+    .nav-link {
+        padding: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .home-text h1 { font-size: 3.5rem; }
+}
